@@ -11,7 +11,6 @@ const imagemin = require('gulp-imagemin');
 const runSequence = require('run-sequence');
 const wait = require('gulp-wait');
 
-// Static server
 gulp.task('browser-sync', () =>
     browserSync.init({
         server: {
