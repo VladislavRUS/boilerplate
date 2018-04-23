@@ -9,6 +9,7 @@ const cleanCSS = require('gulp-clean-css');
 const htmlmin = require('gulp-htmlmin');
 const imagemin = require('gulp-imagemin');
 const runSequence = require('run-sequence');
+const wait = require('gulp-wait');
 
 // Static server
 gulp.task('browser-sync', () =>
@@ -21,6 +22,7 @@ gulp.task('browser-sync', () =>
 
 gulp.task('js', () =>
     gulp.src(config.js.src)
+    .pipe(wait(500))
     .pipe(concat('main.js'))
     .pipe(gulp.dest(config.js.dest))
 );
@@ -39,6 +41,7 @@ gulp.task('js:prod', () =>
 
 gulp.task('scss', () =>
     gulp.src(config.scss.src)
+    .pipe(wait(500))
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest(config.scss.dest))
     .pipe(browserSync.stream())
@@ -82,4 +85,4 @@ gulp.task('prod', (done) =>
     runSequence(['js:prod', 'scss:prod', 'html:prod'], 'assets:prod', 'images:prod', done)
 );
 
-gulp.task('default', ['sass', 'js', 'watch', 'browser-sync']);
+gulp.task('default', ['js', 'scss', 'watch', 'browser-sync']);

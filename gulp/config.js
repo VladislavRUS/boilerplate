@@ -21,6 +21,6 @@ module.exports = {
         prodDest: 'dist/assets'
     },
     images: {
-        src: 'dist/assets/images/*'
+        src: 'dist/assets/images/**/*'
     }
 }
