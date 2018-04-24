@@ -10,6 +10,7 @@ const htmlmin = require('gulp-htmlmin');
 const imagemin = require('gulp-imagemin');
 const runSequence = require('run-sequence');
 const wait = require('gulp-wait');
+const sourcemaps = require('gulp-sourcemaps');
 
 gulp.task('browser-sync', () =>
     browserSync.init({
@@ -22,7 +23,9 @@ gulp.task('browser-sync', () =>
 gulp.task('js', () =>
     gulp.src(config.js.src)
     .pipe(wait(500))
+    .pipe(sourcemaps.init())
     .pipe(concat('main.js'))
+    .pipe(sourcemaps.write())
     .pipe(gulp.dest(config.js.dest))
 );
 
@@ -41,8 +44,10 @@ gulp.task('js:prod', () =>
 gulp.task('scss', () =>
     gulp.src(config.scss.src)
     .pipe(wait(500))
+    .pipe(sourcemaps.init())
     .pipe(sass().on('error', sass.logError))
     .pipe(gulp.dest(config.scss.dest))
+    .pipe(sourcemaps.write())
     .pipe(browserSync.stream())
 );
 

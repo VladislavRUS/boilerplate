@@ -13,6 +13,7 @@
     "gulp-imagemin": "^4.1.0",
     "gulp-minify": "^2.1.0",
     "gulp-sass": "^4.0.0",
+    "gulp-sourcemaps": "^2.6.4",
     "gulp-uglify": "^3.0.0",
     "gulp-wait": "0.0.2",
     "reset-css": "^3.0.0",
