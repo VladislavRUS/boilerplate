@@ -62,7 +62,7 @@ gulp.task('html:prod', () =>
 
 gulp.task('watch', () => {
     gulp.watch(config.scss.watch, ['scss']);
-    gulp.watch(config.js.watch, ['js']);
+    gulp.watch(config.js.watch, ['js', browserSync.reload]);
     gulp.watch(config.html.watch, browserSync.reload);
 });
 
