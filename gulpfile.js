@@ -11,6 +11,7 @@ const imagemin = require('gulp-imagemin');
 const runSequence = require('run-sequence');
 const wait = require('gulp-wait');
 const sourcemaps = require('gulp-sourcemaps');
+const babel = require('gulp-babel');
 
 gulp.task('browser-sync', () =>
     browserSync.init({
@@ -24,6 +25,9 @@ gulp.task('js', () =>
     gulp.src(config.js.src)
     .pipe(wait(500))
     .pipe(sourcemaps.init())
+    .pipe(babel({
+        presets: ['env']
+    }))
     .pipe(concat('main.js'))
     .pipe(sourcemaps.write())
     .pipe(gulp.dest(config.js.dest))
@@ -31,6 +35,9 @@ gulp.task('js', () =>
 
 gulp.task('js:prod', () =>
     gulp.src(config.js.src)
+    .pipe(babel({
+        presets: ['env']
+    }))
     .pipe(concat('main.js'))
     .pipe(minify({
         ext:{
